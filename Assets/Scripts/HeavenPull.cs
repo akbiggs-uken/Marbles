@@ -3,7 +3,7 @@ using System.Collections;
 
 public class HeavenPull : MonoBehaviour {
 	
-	const float PULL_SPEED = 20.0f;
+	const float PULL_SPEED = 25.0f;
 	const float PULL_DRAG = 20f;
 	
 	// Use this for initialization
