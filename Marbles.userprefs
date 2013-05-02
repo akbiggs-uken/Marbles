@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MouseRotation.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HeavenPull.cs">
     <Files>
       <File FileName="Assets/Scripts/MouseRotation.cs" Line="13" Column="3" />
+      <File FileName="Assets/Scripts/HeavenPull.cs" Line="23" Column="65" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
