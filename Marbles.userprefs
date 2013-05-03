@@ -1,9 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HeavenPull.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TextFadeIn.cs">
     <Files>
-      <File FileName="Assets/Scripts/MouseRotation.cs" Line="13" Column="3" />
-      <File FileName="Assets/Scripts/HeavenPull.cs" Line="23" Column="65" />
+      <File FileName="Assets/Scripts/MouseRotation.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/HeavenPull.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WinningObject.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/TrapFlip.cs" Line="28" Column="18" />
+      <File FileName="Assets/Scripts/TextFadeIn.cs" Line="4" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
