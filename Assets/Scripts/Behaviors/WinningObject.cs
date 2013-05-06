@@ -40,7 +40,7 @@ public class WinningObject : MonoBehaviour {
 	void WinLevel() {
 		// only win once
 		if (!LevelOver) {
-			Debug.Log ("YOU WON!");
+			Debug.Log("YOU WON!");
 			wonLevel = true;
 		}
 	}

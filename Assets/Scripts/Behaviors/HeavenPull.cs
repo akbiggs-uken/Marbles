@@ -17,7 +17,7 @@ public class HeavenPull : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider other) {
-		if (other.name == "Marble")
+		if (GameLogicHelper.IsPlayer(other))
 			EndLevel();
 		
 		other.attachedRigidbody.velocity = new Vector3(0, PULL_SPEED, 0);
