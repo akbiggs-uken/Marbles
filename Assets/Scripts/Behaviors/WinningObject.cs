@@ -3,20 +3,23 @@ using System.Collections;
 
 public class WinningObject : MonoBehaviour {
 	
-	const float WINNING_HEIGHT = 30f;
-	const float LOSING_HEIGHT = -20f;
-	const float OFF_TOP_HEIGHT = 40f;
-	const float OFF_BOTTOM_HEIGHT = -300f;
+	const float WINNING_OFFSET = 30f;
+	const float LOSING_OFFSET = -20f;
 	
 	bool wonLevel = false;
 	bool lostLevel = false;
+	
+	float lowestHeightWithoutLoss;
+	float highestHeightWithoutWin;
 	
 	bool LevelOver {
 		get { return (wonLevel || lostLevel); }
 	}
 	// Use this for initialization
 	void Start () {
-	
+		// TODO: don't crash with no platforms
+		lowestHeightWithoutLoss = GameLogicHelper.FindLowestPlatformHeight().Value;
+		highestHeightWithoutWin = GameLogicHelper.FindHighestPlatformHeight().Value;
 	}
 	
 	// Update is called once per frame
@@ -24,17 +27,17 @@ public class WinningObject : MonoBehaviour {
 		
 		// win the level if the object goes beyond a certain height,
 		// or lose when it goes below a different height
-		if (transform.position.y >= WINNING_HEIGHT) {
+		if (transform.position.y >= highestHeightWithoutWin + WINNING_OFFSET) {
 			WinLevel();
-			
-			// don't want the object to be destroyed in plain view, so wait a bit
-			if (transform.position.y >= OFF_TOP_HEIGHT)
-				Destroy(gameObject);
-		} else if (transform.position.y <= LOSING_HEIGHT) {
+		} else if (transform.position.y <= lowestHeightWithoutLoss + LOSING_OFFSET) {
 			LoseLevel();
-			if (transform.position.y <= OFF_BOTTOM_HEIGHT)
-				Destroy(gameObject);
 		}
+	}
+	
+	void OnBecameInvisible() {
+		if (LevelOver)
+			Destroy(gameObject);
+		
 	}
 	
 	void WinLevel() {
@@ -42,6 +45,8 @@ public class WinningObject : MonoBehaviour {
 		if (!LevelOver) {
 			Debug.Log("YOU WON!");
 			wonLevel = true;
+			StopCameraFollow();
+			StopRotation();
 		}
 	}
 	
@@ -50,6 +55,19 @@ public class WinningObject : MonoBehaviour {
 		if (!LevelOver) {
 			Debug.Log("YOU LOST...");
 			lostLevel = true;
+			StopCameraFollow();
+			StopRotation();
 		}
+	}
+	
+	void StopCameraFollow() {
+		if (GetComponent<CameraFollows>())
+			Destroy (GetComponent<CameraFollows>());
+	}
+	
+	void StopRotation() {
+		GameObject level = GameLogicHelper.FindLevel();
+		if (level.GetComponent<MouseRotation>() != null)
+			Destroy(level.GetComponent<MouseRotation>());
 	}
 }

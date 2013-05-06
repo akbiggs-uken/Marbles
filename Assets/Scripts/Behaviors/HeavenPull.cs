@@ -20,7 +20,8 @@ public class HeavenPull : MonoBehaviour {
 		if (GameLogicHelper.IsPlayer(other))
 			EndLevel();
 		
-		other.attachedRigidbody.velocity = new Vector3(0, PULL_SPEED, 0);
+		other.attachedRigidbody.velocity = transform.up * PULL_SPEED;
+		other.attachedRigidbody.useGravity = false;
 	}
 	
 	void EndLevel() {

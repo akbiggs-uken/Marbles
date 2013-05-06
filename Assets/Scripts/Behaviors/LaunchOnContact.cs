@@ -4,16 +4,18 @@ using AssemblyCSharp;
 
 public class LaunchOnContact : MonoBehaviour {
 	
-	public Vector3 launchDirection = new Vector3(0, 1, 0);
 	public float launchSpeed = 15f;
+	Vector3 launchDirection;
+	
 	// Use this for initialization
 	void Start () {
-	
+		launchDirection = transform.up;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		// change the launch direction as the launcher rotates
+		launchDirection = transform.up;
 	}
 	
 	void OnCollisionEnter(Collision collision) {
@@ -25,6 +27,6 @@ public class LaunchOnContact : MonoBehaviour {
 	
 	
 	void Launch(Collider objToLaunch) {
-		objToLaunch.rigidbody.velocity = launchDirection.normalized.ScalarMultiply(launchSpeed);
+		objToLaunch.rigidbody.velocity = launchDirection.normalized * launchSpeed;
 	}
 }
