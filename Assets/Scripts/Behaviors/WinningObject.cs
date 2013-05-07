@@ -9,22 +9,21 @@ public class WinningObject : MonoBehaviour {
 	bool wonLevel = false;
 	bool lostLevel = false;
 	
-	float lowestHeightWithoutLoss;
-	float highestHeightWithoutWin;
+	
 	
 	bool LevelOver {
 		get { return (wonLevel || lostLevel); }
 	}
 	// Use this for initialization
 	void Start () {
-		// TODO: don't crash with no platforms
-		lowestHeightWithoutLoss = GameLogicHelper.FindLowestPlatformHeight().Value;
-		highestHeightWithoutWin = GameLogicHelper.FindHighestPlatformHeight().Value;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		// TODO: Don't crash when there are no platforms.
+		float lowestHeightWithoutLoss = GameLogicHelper.FindLowestPlatformHeight().Value;
+		float highestHeightWithoutWin = GameLogicHelper.FindHighestPlatformHeight().Value;
+
 		// win the level if the object goes beyond a certain height,
 		// or lose when it goes below a different height
 		if (transform.position.y >= highestHeightWithoutWin + WINNING_OFFSET) {

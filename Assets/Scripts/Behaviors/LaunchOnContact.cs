@@ -4,7 +4,7 @@ using AssemblyCSharp;
 
 public class LaunchOnContact : MonoBehaviour {
 	
-	public float launchSpeed = 15f;
+	public float launchSpeed = 210f;
 	Vector3 launchDirection;
 	
 	// Use this for initialization
@@ -27,6 +27,6 @@ public class LaunchOnContact : MonoBehaviour {
 	
 	
 	void Launch(Collider objToLaunch) {
-		objToLaunch.rigidbody.velocity = launchDirection.normalized * launchSpeed;
+		objToLaunch.rigidbody.AddForce(launchDirection.normalized * launchSpeed);
 	}
 }
