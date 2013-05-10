@@ -1,11 +1,12 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using AssemblyCSharp;
 
 public class Main : MonoBehaviour {
 	
 	Level curLevel;
-	ArrayList levelNames = new ArrayList() {
+	List<string> levelNames = new List<string> {
 		"Basic",
 		"Slopes",
 		"Rushed"
@@ -22,7 +23,7 @@ public class Main : MonoBehaviour {
 		
 		// check the level status and react accordingly
 		if (curLevel.IsComplete) {
-			if (curLevel && HaveMoreLevels()) {
+			if (curLevel != null && HaveMoreLevels()) {
 				LoadNextLevel();
 			} else if (!PlayerWon(curLevel)) {
 				RestartLevel();
@@ -32,11 +33,11 @@ public class Main : MonoBehaviour {
 	}
 	
 	bool IsDone(Level level) {
-		
+		return true;	
 	}
 	
 	bool PlayerWon(Level level) {
-		
+		return true;
 	}
 	
 	bool HaveMoreLevels() {
@@ -54,12 +55,12 @@ public class Main : MonoBehaviour {
 	}
 	
 	void LoadNextLevel() {
-		string nextLevelName = levels.Pop();
-		curLevel = Level.LoadFromSceneName(nextLevelName);
+		string nextLevelName = levelNames.Pop<string>(0);
+		curLevel = Level.CreateAndLoad(nextLevelName);
 	}
-	
+
 	void RestartLevel() {
-		Application.LoadLevel(curLevel);
+		Application.LoadLevel(curLevel.Name);
 	}
 	
 	void EndGame() {
